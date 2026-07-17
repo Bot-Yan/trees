@@ -4,3 +4,7 @@
 !index.html
 !CNAME
 !.gitignore
+# 放行 assets 目录
+!assets/
+assets/*
+!assets/mascot-*.png
