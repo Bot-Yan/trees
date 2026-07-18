@@ -8,3 +8,5 @@
 !assets/
 assets/*
 !assets/mascot-*.png
+!assets/home-cat-circles.png
+!assets/ragdoll_*.png
