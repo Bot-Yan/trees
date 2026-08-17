@@ -1,0 +1,349 @@
+/* ===== 全站极简拼接报纸风格 ===== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+:root{
+  --paper:#fffaf0; --paper-2:#fdf3dd; --card:#ffffff; --ink:#1e3a5f;
+  --line:#5b7a99; --line-soft:#e8dcc3; --accent:#e8503a; --sub:#8a7f6e;
+  --red:#e8503a; --blue:#3b82f6; --amber:#f59e0b; --green:#22a06b;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 500px at 50% -10%, #fff6e0 0%, rgba(255,246,224,0) 70%),
+    var(--paper);
+  color:var(--ink);
+  font-family:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.62;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 20px 60px}
+
+/* ===== 报刊通用组件 ===== */
+.np-kicker{font-size:11px;letter-spacing:.22em;color:var(--sub);text-transform:uppercase;margin:0 0 6px}
+.np-rule{border:0;border-top:1px solid var(--line-soft);margin:10px 0}
+.np-rule-double{border:0;border-top:3px double var(--ink);margin:12px 0}
+
+/* ===== 报头 masthead（首页 & 内容页通用） ===== */
+.np-masthead{
+  display:flex;align-items:center;gap:26px;
+  border-top:4px double var(--ink);border-bottom:3px solid var(--ink);
+  padding:20px 6px 18px;margin-bottom:8px;
+}
+.np-mast-left{flex:1;min-width:0}
+.np-edition{font-size:12px;letter-spacing:.18em;color:var(--sub);text-transform:uppercase;margin-bottom:8px;border-bottom:1px solid var(--line-soft);padding-bottom:6px}
+.np-paper-name{
+  font-family:"Noto Serif SC",serif;font-weight:900;font-size:42px;margin:0 0 2px;
+  color:var(--ink);letter-spacing:.08em;line-height:1.15;
+}
+/* 仅 2026 内容页刊名显示版次后缀；首页 / 占位页不显示 */
+.np-mast-2026 .np-paper-name::after{content:"·2026·";color:var(--red);font-size:24px;letter-spacing:.2em}
+.np-headline{font-family:"Noto Serif SC",serif;font-weight:700;font-size:19px;color:var(--red);margin:8px 0 8px;letter-spacing:.12em}
+.np-deck{font-size:14px;color:var(--sub);border-top:1px solid var(--line-soft);padding-top:8px}
+.np-mast-right{flex:0 0 auto}
+/* 本期要目框（内容页报头右上） */
+.np-mast-toc{border:1px solid var(--ink);background:var(--card);padding:10px 14px;min-width:190px}
+.np-toc-kicker{font-size:11px;letter-spacing:.2em;color:var(--red);font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:5px;margin-bottom:6px;text-align:center}
+.np-toc-line{display:flex;align-items:baseline;gap:8px;font-size:12.5px;padding:2.5px 0;border-bottom:1px dotted var(--line-soft)}
+.np-toc-line:last-child{border-bottom:0}
+.np-toc-line b{font-family:"Noto Serif SC",serif;color:var(--red);font-size:14px}
+.np-toc-n{margin-left:auto;color:var(--sub);font-size:11px}
+
+/* ===== 首页：报纸刊头 + 猫图导航 ===== */
+#home{
+  min-height:100vh; display:flex; flex-direction:column; align-items:center;
+  justify-content:flex-start; gap:14px; padding:26px 20px 50px;
+  background:
+    radial-gradient(720px 420px at 50% -12%, rgba(255,214,120,.40), rgba(255,214,120,0) 60%),
+    var(--paper);
+}
+#home .np-masthead{width:100%;max-width:1000px}
+.home-title{
+  font-family:"Noto Serif SC",serif;font-size:38px;font-weight:900;margin:14px 0 0;
+  letter-spacing:.1em;color:var(--ink);text-align:center;
+}
+.home-title .np-hl-red{color:var(--red)}
+.home-sub{margin:0;color:var(--sub);font-size:14px;font-weight:500;
+  border:1px solid var(--line-soft);padding:5px 16px;background:var(--card)}
+
+/* 舞台容器（保持宽高比，响应式） */
+.stage{
+  position:relative;
+  width:100%;
+  max-width:880px;
+  aspect-ratio:1280/1020;
+  margin:6px auto 0;
+  border:1px solid var(--line);
+  background:var(--card);
+  padding:6px;
+  background-image: url('assets/home-cat-circles.png');
+  background-size: 100% 100%;
+  background-position: center;
+}
+.stage-img{width:100%;height:100%;object-fit:contain;display:block}
+
+/* 热区按钮（覆盖在图片圆圈位置上，透明但可点击） */
+.hotspot{
+  position:absolute; width:13.5%; aspect-ratio:1/1; border-radius:50%;
+  border:none; cursor:pointer; background:transparent;
+  transform:translate(-50%,-50%);
+  transition:transform .18s ease, box-shadow .18s ease;
+  font-family:"Noto Serif SC",serif; font-weight:900; font-size:clamp(12px,1.5vw,19px);
+  color:#1e3a5f; line-height:1.15; display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:4px;
+  outline:none;
+}
+.hotspot::after{
+  content:''; position:absolute; inset:-4px; border-radius:50%;
+  border:2px dashed transparent;
+  transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+  pointer-events:none;
+}
+.hotspot:hover{ transform:translate(-50%,-50%) scale(1.1); }
+.hotspot:hover::after{
+  border-color:var(--red);
+  box-shadow:0 0 16px rgba(232,80,58,.4);
+}
+.hotspot:active{ transform:translate(-50%,-50%) scale(.96); }
+.hotspot-long{ font-size:clamp(10px,1.15vw,14px); line-height:1.1; }
+
+.home-foot{ color:var(--sub); font-size:13px; margin:4px 0 0; }
+.home-beian{ text-decoration:none; color:var(--sub) !important; font-size:12px; margin-top:6px }
+
+/* 年份视图 */
+#year{ display:none; }
+.back-btn{
+  position:sticky; top:12px; z-index:60; display:block; margin:14px auto 0;
+  background:var(--ink); color:#fff; border:1px solid var(--ink); cursor:pointer;
+  font-family:"Noto Serif SC",serif; font-weight:700; font-size:14px; padding:8px 20px;
+  letter-spacing:.1em; transition:background .15s ease,color .15s ease;
+}
+.back-btn:hover{ background:var(--red); border-color:var(--red) }
+.status-badge{
+  display:inline-block; font-size:18px; font-weight:800; padding:12px 20px;
+  font-family:"Noto Serif SC",serif;
+  background:var(--card); color:var(--ink); border:2px solid var(--ink);
+}
+
+/* ===== 2026 内容页组件 ===== */
+/* 导语拼贴 */
+.np-lead{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0 20px}
+.np-lead-item{display:flex;gap:12px;align-items:center;border:1px solid var(--line-soft);
+  background:var(--card);padding:12px 14px}
+.np-lead-img{width:56px;height:56px;object-fit:contain;mix-blend-mode:multiply;flex:0 0 auto}
+.np-lead-text h4{font-family:"Noto Serif SC",serif;font-size:17px;margin:0 0 2px;color:var(--ink)}
+.np-lead-text p{font-size:12.5px;color:var(--sub);margin:0;line-height:1.5}
+
+/* 区块 / panel */
+.np-section{margin-bottom:22px}
+.np-section-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.np-panel{background:var(--card);border:1px solid var(--ink);padding:18px 20px;position:relative}
+.np-panel::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--red)}
+.np-panel-title{
+  font-family:"Noto Serif SC",serif;font-size:19px;font-weight:900;margin:0 0 14px;
+  letter-spacing:.06em;display:flex;align-items:center;gap:10px;
+}
+.np-panel-title::before{content:"■";color:var(--red);font-size:12px}
+.np-panel-title::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+
+/* 类型分布条 */
+.np-bar-row{display:grid;grid-template-columns:150px 1fr 52px;align-items:center;gap:10px;margin:8px 0;font-size:13px}
+.np-bar-lab{color:var(--ink);font-weight:500}
+.np-bar-track{background:var(--paper-2);height:16px;border:1px solid var(--line-soft)}
+.np-bar-fill{height:100%;background:repeating-linear-gradient(45deg,var(--ink),var(--ink) 4px,var(--red) 4px,var(--red) 8px);display:block}
+.np-bar-n{text-align:right;font-weight:700;font-family:"Noto Serif SC",serif}
+
+/* 阶段柱状 */
+.np-stagebars{display:flex;align-items:flex-end;gap:14px;height:170px;padding:8px 4px 0;border-bottom:2px solid var(--ink)}
+.np-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.np-bar{width:56%;max-width:44px;background:var(--ink);border-top:3px solid var(--red);
+  display:flex;align-items:flex-start;justify-content:center;padding-top:3px;color:#fff;
+  font-size:12px;font-weight:700;font-family:"Noto Serif SC",serif}
+.np-bar-val{background:var(--red);color:#fff;padding:0 5px;line-height:1.5}
+.np-lab{font-size:12px;color:var(--ink);margin-top:5px;font-weight:700}
+.np-stagelegend{font-size:11.5px;color:var(--sub);margin-top:8px;line-height:1.7}
+
+/* 批次速览 */
+.np-stage{margin-bottom:16px}
+.np-stage-head{
+  display:flex;align-items:baseline;gap:12px;
+  border-top:2px solid var(--ink);border-bottom:1px solid var(--line);
+  padding:7px 2px 6px;margin-bottom:10px;
+}
+.np-stage-letter{font-family:"Noto Serif SC",serif;font-size:26px;font-weight:900;color:var(--red);line-height:1}
+.np-stage-name{font-family:"Noto Serif SC",serif;font-size:17px;font-weight:700}
+.np-stage-note{font-size:12px;color:var(--sub)}
+.np-stage-count{margin-left:auto;font-size:12px;font-weight:700;background:var(--ink);color:#fff;padding:2px 9px;display: inline-block;}
+.np-cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.np-card{border:1px solid var(--line-soft);background:#ffffff;padding:10px 12px;break-inside:avoid}
+/* 阶段分色：明亮拼贴 */
+.np-card[data-stage="A"]{border-left:4px solid #f59e0b}
+.np-card[data-stage="B"]{border-left:4px solid #3b82f6}
+.np-card[data-stage="C"]{border-left:4px solid #22a06b}
+.np-card[data-stage="D"]{border-left:4px solid #8b5cf6}
+.np-card[data-stage="E"]{border-left:4px solid #e8503a}
+.np-card[data-stage="F"]{border-left:4px solid #06b6d4}
+.np-card[data-stage="G"]{border-left:4px solid #ec4899}
+.np-card[data-stage="H"]{border-left:4px solid #10b981}
+.np-card[data-stage="Z"]{border-left:4px solid #f97316}
+/* 阶段柱状分色 */
+.np-stagebars .np-col:nth-child(1) .np-bar{background:#f59e0b}
+.np-stagebars .np-col:nth-child(2) .np-bar{background:#3b82f6}
+.np-stagebars .np-col:nth-child(3) .np-bar{background:#22a06b}
+.np-stagebars .np-col:nth-child(4) .np-bar{background:#8b5cf6}
+.np-stagebars .np-col:nth-child(5) .np-bar{background:#e8503a}
+.np-stagebars .np-col:nth-child(6) .np-bar{background:#06b6d4}
+.np-stagebars .np-col:nth-child(7) .np-bar{background:#ec4899}
+.np-stagebars .np-col:nth-child(8) .np-bar{background:#10b981}
+.np-stagebars .np-col:nth-child(9) .np-bar{background:#f97316}
+/* 阶段字母同色系 */
+#stage-A .np-stage-letter{color:#f59e0b}
+#stage-B .np-stage-letter{color:#3b82f6}
+#stage-C .np-stage-letter{color:#22a06b}
+#stage-D .np-stage-letter{color:#8b5cf6}
+#stage-E .np-stage-letter{color:#e8503a}
+#stage-F .np-stage-letter{color:#06b6d4}
+#stage-G .np-stage-letter{color:#ec4899}
+#stage-H .np-stage-letter{color:#10b981}
+#stage-Z .np-stage-letter{color:#f97316}
+.np-card-head{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--sub);border-bottom:1px dotted var(--line-soft);padding-bottom:5px;margin-bottom:6px}
+.np-card-date{font-weight:700;color:var(--ink);font-family:"Noto Serif SC",serif}
+.np-card-type{background:var(--paper-2);padding:0 6px;border-radius:50%}
+.np-card-meta{margin-left:auto}
+.np-card-title{font-size:13.5px;font-weight:600;margin:0 0 4px;line-height:1.5;word-break:break-all}
+.np-card-subj{font-size:11px;color:var(--sub);margin:0}
+
+/* 矩阵 */
+.np-mwrap{overflow-x:auto;padding-bottom:6px}
+.np-legend{font-size:12px;color:var(--sub);margin-bottom:8px}
+table.np-matrix{border-collapse:collapse;font-size:12px;width:auto;min-width:100%}
+table.np-matrix th,table.np-matrix td{border:1px solid var(--line-soft);padding:4px 3px;text-align:center}
+table.np-matrix th.np-subj-name{background:var(--paper-2);font-family:"Noto Serif SC",serif;font-size:13px;font-weight:700;padding:6px 4px;border-bottom:2px solid var(--ink)}
+table.np-matrix th.np-sub{background:#eef3fa;font-size:11px;font-weight:600;color:var(--sub)}
+table.np-matrix th.np-mlabel{text-align:left;white-space:nowrap;min-width:190px;background:var(--paper-2);position:sticky;left:0;z-index:3;font-family:"Noto Serif SC",serif;font-size:12.5px}
+table.np-matrix td.np-mlabel{text-align:left;white-space:nowrap;min-width:190px;overflow:hidden;text-overflow:ellipsis;position:sticky;left:0;background:#ffffff;z-index:1;font-size:12px;max-width:220px}
+table.np-matrix td.np-mlabel .np-mltxt{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td.np-cell{height:20px;min-width:26px}
+td.np-cell.on{background:linear-gradient(180deg,#34d39e,#22b07f);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+td.np-cell.off{background:#eef3fa}
+
+/* 目录树 */
+.np-tree,.np-tree ul{list-style:none;margin:0;padding-left:16px}
+.np-tree{font-size:13px}
+.np-tree li{position:relative;margin:1.5px 0;line-height:1.55}
+.np-toggle{cursor:pointer;display:inline-block;width:16px;color:var(--red);font-weight:700;user-select:none}
+.np-dname{cursor:pointer;font-weight:600}
+.np-file .np-fname{color:var(--sub);font-size:12px;word-break:break-all}
+.np-dir>.np-tree{display:none}
+.np-dir.open>.np-tree{display:block}
+
+/* 网盘链接 */
+.np-dl{font-family:"Noto Serif SC",serif;font-size:15px;margin:22px 0 0;padding-top:14px;border-top:3px double var(--ink)}
+.np-dl a{color:var(--red);text-decoration:underline;font-weight:700;margin:0 6px}
+
+/* 旧组件报纸化兜底（占位页 hero/panel/dl-links/status-badge） */
+.hero{
+  display:flex;align-items:center;gap:18px;
+  border-top:4px double var(--ink);border-bottom:3px solid var(--ink);
+  padding:20px 6px 18px;margin-bottom:20px;
+}
+.hero-text{flex:1;min-width:0}
+.hero h1{font-family:"Noto Serif SC",serif;font-weight:900;font-size:30px;margin:0 0 6px;letter-spacing:.08em;color:var(--ink)}
+.hero .sub{color:var(--sub);font-size:14px;margin:0;background:var(--card);display:inline-block;padding:4px 12px;border:1px solid var(--line-soft)}
+.panel{background:var(--card);border:1px solid var(--ink);padding:18px 20px;margin-bottom:22px;position:relative}
+.panel h2{font-family:"Noto Serif SC",serif;font-size:19px;font-weight:900;margin:0 0 14px;display:flex;align-items:center;gap:10px;letter-spacing:.06em}
+.panel h2::before{content:"■";color:var(--red);font-size:12px}
+.dl-links{font-family:"Noto Serif SC",serif;font-size:15px;margin:0 0 20px;display:flex;flex-wrap:wrap;gap:18px}
+.dl-links a{color:var(--red);text-decoration:underline;font-weight:700}
+.dl-links a:hover{color:#c93a28}
+
+/* 欢迎弹窗：报纸卡片 */
+.welcome-overlay{
+  position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
+  background:rgba(30,58,95,.45);backdrop-filter:blur(3px);animation:wo-fade .3s ease;padding:20px;
+}
+.welcome-card{
+  width:min(580px,94vw);max-height:86vh;display:flex;flex-direction:column;overflow:hidden;
+  background:var(--card);border:2px solid var(--ink);box-shadow:0 24px 60px rgba(30,58,95,.35);
+  animation:wo-pop .35s cubic-bezier(.2,.9,.3,1.2);
+}
+.welcome-head{
+  display:flex;align-items:center;gap:14px;padding:18px 24px;
+  background:var(--ink);color:var(--paper);
+  border-bottom:4px double var(--paper);
+}
+.welcome-cat{font-size:36px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+.welcome-title{font-family:"Noto Serif SC",serif;font-size:19px;font-weight:900;color:var(--paper);letter-spacing:.06em}
+.welcome-sub{font-size:13px;opacity:.8;margin-top:2px;color:var(--paper-2)}
+.welcome-body{padding:20px 26px;overflow-y:auto;font-size:15px;line-height:1.85;color:#2b3a52;background:var(--card)}
+.welcome-body p{margin:0 0 12px}
+.welcome-body .closing{
+  margin:18px 0 0;text-align:center;font-weight:800;font-size:16px;
+  font-family:"Noto Serif SC",serif;color:var(--red);
+}
+.welcome-foot{padding:14px 24px 20px;display:flex;justify-content:center;background:var(--card);border-top:1px solid var(--line-soft)}
+.welcome-btn{
+  border:2px solid var(--ink);cursor:pointer;font-family:"Noto Serif SC",serif;
+  font-weight:800;font-size:15px;color:#fff;
+  padding:10px 30px;background:var(--ink);letter-spacing:.12em;
+  transition:background .15s ease,color .15s ease;
+}
+.welcome-btn:hover{background:var(--red);border-color:var(--red)}
+.welcome-hide{opacity:0;transition:opacity .28s ease}
+@keyframes wo-fade{from{opacity:0}to{opacity:1}}
+@keyframes wo-pop{from{transform:translateY(24px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+
+/* ===== 移动端 ===== */
+@media(max-width:760px){
+  .np-paper-name{font-size:30px}
+  .np-mast-2026 .np-paper-name::after{font-size:17px}
+  .np-masthead{gap:14px;padding:14px 4px}
+  .np-lead{grid-template-columns:1fr}
+  .np-section-cols{grid-template-columns:1fr}
+  .np-cardgrid{grid-template-columns:1fr}
+  .np-bar-row{grid-template-columns:110px 1fr 42px}
+  .home-title{font-size:26px}
+  .hotspot{width:15%}
+  .stage{max-width:100%}
+  .os-mobile .np-card-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4;max-height:2.8em}
+  .os-mobile table.np-matrix td.np-mlabel{white-space:normal;min-width:150px}
+  .os-mobile table.np-matrix td.np-mlabel .np-mltxt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;white-space:normal;line-height:1.3;max-height:2.6em}
+}
+/* 给彩色进度条本身添加扫光效果 */
+.np-bar-track {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px; /* 稍微圆润一下边缘 */
+}
+.np-bar-track::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,119,0, 0.8) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+.np-bar-row:hover .np-bar-track::before {
+  transform: translateX(100%);
+  transition: transform 1.0s ease-in-out;
+}
+.np-bar-row:hover .np-bar-track::before {
+  transform: translateX(100%);
+}
+.np-card,
+.hotspot,
+.np-panel,
+.np-bar-track,
+.np-lead-item,
+.back-btn,
+.np-stage-count,
+.welcome-btn,
+.np-mast-toc {
+  border-radius: 20px !important;
+  overflow: hidden; 
+}
