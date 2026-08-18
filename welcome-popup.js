@@ -24,7 +24,7 @@
   overlay.className = 'welcome-overlay';
   overlay.innerHTML =
     '<div class="welcome-card">'
-    + '<div class="welcome-head"><span class="welcome-cat">🐱</span>'
+    + '<div class="welcome-head"><span class="welcome-cat">💯</span>'
     + '<div><div class="welcome-title">欢迎来到福建高考备考资料导航</div>'
     + '<div class="welcome-sub">一套省内全科电子卷的诞生记</div></div></div>'
     + '<div class="welcome-body">' + bodyHtml + '</div>'
