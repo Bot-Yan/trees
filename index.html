@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><link rel="stylesheet" href="style.css">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>高考真题资料导航</title>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高考真题资料导航</title>
+  <link rel="icon" href="assets/facivon.svg" type="image/svg+hml">
 </head>
+
 <body>
-<div id="home">
-  <div class="np-masthead np-mast-home">
-    <div class="np-mast-left">
-      <div class="np-edition">福建高考备考资料导航 · 全站目录</div>
-      <h1 class="np-paper-name">福建高考备考导航</h1>
-      <div class="np-headline">八届资料 · 一图直达 · 全科真卷</div>
-      <div class="np-deck">2021 届 — 2027 届 ｜ 点击猫咪环上的届别圆点查看对应资料目录</div>
+  <div id="home">
+    <div class="np-masthead np-mast-home">
+      <div class="np-mast-left">
+        <div class="np-edition">福建高考备考资料导航 · 全站目录</div>
+        <h1 class="np-paper-name">福建高考备考导航</h1>
+        <div class="np-headline">八届资料 · 一图直达 · 全科真卷</div>
+        <div class="np-deck">2021 届 — 2027 届 ｜ 点击猫咪环上的届别圆点查看对应资料目录</div>
+      </div>
     </div>
+    <h2 class="home-title">选择届别查看资料</h2>
+    <p class="home-sub">点选下方布偶猫环上的年份，直达该届资料目录</p>
+    <div class="stage">
+      <a href="2021.html" class="hotspot" style="left:12.5%;top:27.16%" aria-label="2021届">2021届</a>
+      <a href="2022.html" class="hotspot" style="left:37.5%;top:27.16%" aria-label="2022届">2022届</a>
+      <a href="2023.html" class="hotspot" style="left:62.5%;top:27.16%" aria-label="2023届">2023届</a>
+      <a href="2024.html" class="hotspot" style="left:87.5%;top:27.16%" aria-label="2024届">2024届</a>
+      <a href="2025.html" class="hotspot" style="left:12.5%;top:77.16%" aria-label="2025届">2025届</a>
+      <a href="2026.html" class="hotspot" style="left:37.5%;top:77.16%" aria-label="2026届">2026届</a>
+      <a href="2027.html" class="hotspot" style="left:62.5%;top:77.16%" aria-label="2027届">2027届</a>
+      <a href="2021-2026.html" class="hotspot hotspot-long" style="left:87.5%;top:77.16%"
+        aria-label="2021-2026福建高考真题">2021-2026<br>福建高考真题</a>
+    </div>
+    <p class="home-foot">资料持续整理中 · 全科原卷 / 答案 / 听力 / 解析</p>
+    <a class="home-beian" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2026027149号-1</a>
   </div>
-  <h2 class="home-title">选择届别查看资料</h2>
-  <p class="home-sub">点选下方布偶猫环上的年份，直达该届资料目录</p>
-  <div class="stage">
-    <a href="2021.html" class="hotspot"  style="left:12.5%;top:27.16%" aria-label="2021届">2021届</a>
-    <a href="2022.html" class="hotspot"  style="left:37.5%;top:27.16%" aria-label="2022届">2022届</a>
-    <a href="2023.html" class="hotspot"  style="left:62.5%;top:27.16%" aria-label="2023届">2023届</a>
-    <a href="2024.html" class="hotspot"  style="left:87.5%;top:27.16%" aria-label="2024届">2024届</a>
-    <a href="2025.html" class="hotspot"  style="left:12.5%;top:77.16%" aria-label="2025届">2025届</a>
-    <a href="2026.html" class="hotspot"  style="left:37.5%;top:77.16%" aria-label="2026届">2026届</a>
-    <a href="2027.html" class="hotspot"  style="left:62.5%;top:77.16%" aria-label="2027届">2027届</a>
-    <a href="2021-2026.html" class="hotspot hotspot-long" style="left:87.5%;top:77.16%" aria-label="2021-2026福建高考真题">2021-2026<br>福建高考真题</a>
   </div>
-  <p class="home-foot">资料持续整理中 · 全科原卷 / 答案 / 听力 / 解析</p>
-  <a class="home-beian" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2026027149号-1</a>
-</div>
-<div id="year">
-  <button class="back-btn" id="backBtn">&larr; 返回首页</button>
-  <div id="year-body"></div>
-  <div id="park" style="display:none">
-</div></div>
-<script src="mobile-tree.js"></script>
-<script src="welcome-popup.js"></script>
-</body></html>
+  </div>
+  <script src="tree.js"></script>
+  <script src="welcome-popup.js"></script>
+</body>
+
+</html>

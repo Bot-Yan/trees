@@ -8,12 +8,13 @@
   --ink: #1e3a5f;
   --line: #5b7a99;
   --line-soft: #e8dcc3;
-  --accent: #e8503a;
   --sub: #8a7f6e;
   --red: #e8503a;
   --blue: #3b82f6;
   --amber: #f59e0b;
   --green: #22a06b;
+  --paw:#ffe9d6;
+  --paw-dark:#ffdcc4;
 }
 
 * {
@@ -93,9 +94,15 @@ body {
   line-height: 1.15;
 }
 
-/* 仅 2026 内容页刊名显示版次后缀；首页 / 占位页不显示 */
+/* 仅 内容页刊名显示版次后缀；首页不显示 */
 .np-mast-2026 .np-paper-name::after {
   content: "·2026·";
+  color: var(--red);
+  font-size: 24px;
+  letter-spacing: .2em
+}
+.np-mast-2021 .np-paper-name::after {
+  content: "·2021·";
   color: var(--red);
   font-size: 24px;
   letter-spacing: .2em
@@ -410,8 +417,9 @@ body {
 
 .np-bar-fill {
   height: 100%;
-  background: repeating-linear-gradient(45deg, var(--ink), var(--ink) 4px, var(--red) 4px, var(--red) 8px);
-  display: block
+  background: linear-gradient(135deg, #FF9A8B, #FFDA79);
+  display: block;
+  border-radius: 2px;
 }
 
 .np-bar-n {
@@ -548,7 +556,7 @@ body {
 }
 
 .np-card[data-stage="E"] {
-  border-left: 4px solid #e8503a
+  border-left: 4px solid var(red)
 }
 
 .np-card[data-stage="F"] {
@@ -585,7 +593,7 @@ body {
 }
 
 .np-stagebars .np-col:nth-child(5) .np-bar {
-  background: #e8503a
+  background: var(red)
 }
 
 .np-stagebars .np-col:nth-child(6) .np-bar {
@@ -622,7 +630,7 @@ body {
 }
 
 #stage-E .np-stage-letter {
-  color: #e8503a
+  color: var(red)
 }
 
 #stage-F .np-stage-letter {
@@ -1060,7 +1068,7 @@ td.np-cell.off {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #ffe9d6;
+  background: var(paw);
   color: #b45f3a;
   padding: 8px 14px 8px 14px;
   border-radius: 40px;
@@ -1068,12 +1076,12 @@ td.np-cell.off {
   font-size: 15px;
   font-weight: 500;
   box-shadow: 0 4px 12px rgba(180, 95, 58, 0.15);
-  border: 1.5px solid #ffdcc4;
+  border: 1.5px solid var(paw-dark);
   transition: all 0.25s ease;
 }
 
 .back-home:hover {
-  background: #ffdcc4;
+  background: var(paw-drak);
   transform: scale(1.04) rotate(-2deg);
   box-shadow: 0 6px 18px rgba(180, 95, 58, 0.25);
 }
@@ -1112,8 +1120,8 @@ td.np-cell.off {
   flex-shrink: 0;
   width: 60px;
   height: 100%;
-  background: #ffe9d6;
-  border-right: 1.5px solid #ffdcc4;
+  background:var(paw);
+  border-right: 1.5px solid var(paw-dark);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1127,13 +1135,16 @@ td.np-cell.off {
 }
 
 .toc-tab:hover {
-  background: #ffdcc4;
+  background: var(paw-drak);
 }
 
-.toc-drawer-inner {
+.toc-inner {
   flex: 1;
+  height: 100%;
+  min-height: 0;
   padding: 30px 24px 24px 30px;
   background: #fffcf8;
+  box-sizing: border-box;
 }
 
 .toc-header {
@@ -1152,7 +1163,7 @@ td.np-cell.off {
   font-size: 20px;
   font-weight: 600;
   align-items: center;
-  gap:8p;
+  gap:8px;
   color: #4a3a32;
 }
 
@@ -1275,6 +1286,7 @@ td.np-cell.off {
 .welcome-btn,
 .toc-drawer,
 .toc-tab,
+.stage,
 .np-mast-toc {
   border-radius: 20px !important;
   overflow: hidden;

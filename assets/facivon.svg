@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="24" fill="#FFF5F0" stroke="#F0D5C8" stroke-width="2"/>
+  <path d="M22 42 L10 14 L35 30 Z" fill="#FFB5C2" stroke="#E8A0AB" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M78 42 L90 14 L65 30 Z" fill="#FFB5C2" stroke="#E8A0AB" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="50" cy="48" r="30" fill="#FFFFFF" stroke="#D9B8A4" stroke-width="2"/>
+  <circle cx="38" cy="44" r="5" fill="#3E2723"/>
+  <circle cx="39.5" cy="42" r="2" fill="#FFFFFF"/>
+  <circle cx="62" cy="44" r="5" fill="#3E2723"/>
+  <circle cx="63.5" cy="42" r="2" fill="#FFFFFF"/>
+  <ellipse cx="28" cy="54" rx="7" ry="4" fill="#FF9EAB" opacity="0.7"/>
+  <ellipse cx="72" cy="54" rx="7" ry="4" fill="#FF9EAB" opacity="0.7"/>
+  <path d="M46 56 Q50 62 54 56" fill="none" stroke="#D9B8A4" stroke-width="2" stroke-linecap="round"/>
+  <line x1="15" y1="48" x2="28" y2="50" stroke="#D9B8A4" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="15" y1="54" x2="28" y2="55" stroke="#D9B8A4" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="85" y1="48" x2="72" y2="50" stroke="#D9B8A4" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="85" y1="54" x2="72" y2="55" stroke="#D9B8A4" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="22" y="76" width="56" height="18" rx="10" fill="#1E3A5F"/>
+  <text x="50" y="89" font-family="'Arial Rounded MT Bold', 'Noto Sans SC', sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">FJGK</text>
+</svg>
