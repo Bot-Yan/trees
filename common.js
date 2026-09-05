@@ -2,7 +2,7 @@
 (function () {
   // 1. 创建“回到首页”按钮（固定左上角）
   const backHome = document.createElement('a');
-  backHome.href = 'index.html';
+  backHome.href = 'home.html';
   backHome.className = 'back-home';
   backHome.innerHTML = '回到首页';
   document.body.prepend(backHome);
