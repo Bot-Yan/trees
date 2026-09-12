@@ -1,4 +1,5 @@
 /// 首次访问欢迎弹窗 + 致谢名单（Cookie 控制，365 天内只弹一次）
+/// 首次访问欢迎弹窗 + 致谢名单（Cookie 控制，365 天内只弹一次）
 (function () {
   var KEY = 'fj_site_visited_v1';
   function getCookie(n) { var m = document.cookie.match('(^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[2]) : null; }
