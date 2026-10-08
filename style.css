@@ -825,20 +825,168 @@ td.np-cell.off {
   display: block
 }
 
-/* 网盘链接 */
-.np-dl {
-  font-family: "Noto Serif SC", serif;
-  font-size: 15px;
-  margin: 22px 0 0;
-  padding-top: 14px;
-  border-top: 3px double var(--ink)
+/* ===== 网盘链接卡片（新样式） ===== */
+.np-dl-top {
+    margin-top: 22px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 3px double var(--ink);
 }
 
-.np-dl a {
-  color: var(--red);
-  text-decoration: underline;
-  font-weight: 700;
-  margin: 0 6px
+.np-dl-title {
+    font-family: "Noto Serif SC", serif;
+    font-size: 17px;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: .08em;
+    margin-bottom: 14px;
+}
+
+.np-dl-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); !important
+    row-gap: 24px;
+    column-gap: 24px;
+}
+
+.dl-card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--ink);
+    border-left: none; 
+    border-radius: 16px; 
+    overflow: hidden; 
+    padding: 16px 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dl-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--red);
+}
+
+/* 上方：网盘名称 */
+.dl-card-name {
+    font-family: "Noto Serif SC", serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: .1em;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--line-soft);
+}
+
+/* 下方：左提取码 + 右按钮 */
+.dl-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.dl-card-code {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.dl-card-code-label {
+    font-size: 11px;
+    letter-spacing: .16em;
+    color: var(--sub);
+    text-transform: uppercase;
+}
+
+.dl-card-code-val {
+    font-family: "Noto Serif SC", serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--red);
+    letter-spacing: .14em;
+    line-height: 1.1;
+}
+
+/* 右下角按钮 */
+
+.dl-card-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 16px;
+    background: var(--ink);
+    border-radius: 16px;
+    color: #fff;
+    font-family: "Noto Serif SC", serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, transform .15s ease;
+    white-space: nowrap;
+}
+
+.dl-card-btn:hover {
+    background: var(--red);
+    border-color: var(--red);
+}
+
+.dl-card-btn:active {
+    transform: scale(.96);
+}
+
+/* 新增：已复制状态变绿 */
+.dl-card-btn.is-copied {
+    background: var(--green, #22a06b) !important;
+    border-color: var(--green, #22a06b) !important;
+    color: #fff !important;
+}
+
+/* 复制提示 toast */
+.dl-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(30, 58, 95, .92);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s ease;
+    white-space: nowrap;
+    z-index: 99999;
+    box-shadow: 0 8px 24px rgba(30, 58, 95, .25);
+}
+
+.dl-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 移动端：窄屏时按钮换行 */
+@media (max-width: 520px) {
+    .dl-card-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .dl-card-btn {
+        align-self: stretch;
+        text-align: center;
+    }
 }
 
 /* 旧组件报纸化兜底（占位页 hero/panel/dl-links/status-badge） */
